@@ -54,6 +54,7 @@ public class Api_StepDefs {
 
     @Then("the response status code for user should be {int}")
     public void theResponseStatusCodeForUserShouldBe(int arg1) {
+        assertEquals(arg1, response.statusCode());
     }
 
     @Then("the response should contain user details")

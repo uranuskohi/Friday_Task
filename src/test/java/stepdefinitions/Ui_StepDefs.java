@@ -20,6 +20,7 @@ public class Ui_StepDefs {
     @Given("enter {string}")
     public void enter(String fullName) {
         uiHomePage = new Ui_HomePage();
+        Driver.getDriver().navigate().refresh();
         BrowserUtils.sendKeysWithTimeout(uiHomePage.username, fullName, 2);
     }
 
@@ -40,7 +41,7 @@ public class Ui_StepDefs {
 
     @Given("click on Submit button")
     public void click_on_submit_button() {
-        WaitUtils.waitFor(3);
+        WaitUtils.waitFor(1);
         BrowserUtils.clickWithTimeOut(uiHomePage.submitButton, 2);
 //        uiHomePage.submitButton.click();
     }
@@ -48,7 +49,8 @@ public class Ui_StepDefs {
     @Then("verify the result contains the {string}")
     public void verify_the_result_contains_the(String data) {
 
-        Assert.assertTrue(uiHomePage.assertion.isDisplayed());
+        Assert.assertTrue(data, uiHomePage.assertion.isDisplayed());
+        WaitUtils.waitFor(1);
     }
 
     @Then("close the application")
